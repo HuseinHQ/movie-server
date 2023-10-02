@@ -2,10 +2,11 @@
 
 List of Available Endpoints:
 - `POST /movies`
+- `GET /movies`
 
 ### POST /movies
 #### Description
-- Create a movie
+- Create a new movie
 
 #### Response
 _201 - Created_
@@ -13,7 +14,7 @@ _201 - Created_
 - Body
     ```json
     {
-      "statusCode": 200,
+      "statusCode": 201,
       "data": [
         {
           "id": Integer,
@@ -40,6 +41,35 @@ _400 - Bad Request_
       "error": {
         "message": [String, ...]
       }
+    }
+    ```
+
+### GET /movies
+#### Description
+- Get all movies from database
+
+#### Response
+_200 - OK_
+
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": [
+        {
+          "id": Integer,
+          "title": String,
+          "synopsis": String,
+          "trailerUrl": String,
+          "imgUrl": String,
+          "rating": Integer,
+          "genreId": Integer,
+          "authorId": Integer,
+          "createdAt": Date,
+          "updatedAt": Date
+        },
+        ...
+      ]
     }
     ```
 
