@@ -112,12 +112,39 @@ _200 - OK_
         },
     }
     ```
-_400 - Bad Request_
+_404 - Not Found_
 - Body
     ```json
     {
       "statusCode": 404,
       "error": {
+        "message": "error not found"
+      }
+    }
+    ```
+
+## DELETE /movies/:id
+### Description
+- Delete one movie by id from database
+
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "message": "Movies success to delete"
+      }
+    }
+    ```
+
+_404 - Not Found_
+- Body
+    ```json
+    {
+      "statusCode": 404,
+      "data": {
         "message": "error not found"
       }
     }

@@ -47,9 +47,13 @@ class MovieController {
       const { id } = req.params
       const deletedMovie = await Movie.destroy({ where: { id } });
 
-      res.status(200)
+      if (deletedMovie) {
+        res.status(200).json({ message: 'Movies success to delete' });
+      } else {
+        res.status(404).json({ message: 'error not found' })
+      }
     } catch (error) {
-
+      res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 }
