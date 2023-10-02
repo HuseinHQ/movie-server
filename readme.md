@@ -150,6 +150,28 @@ _404 - Not Found_
     }
     ```
 
+## GET /genres
+### Description
+- Get all genres from database
+
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": [
+        {
+            "id": Integer,
+            "name": String,
+            "createdAt": Date,
+            "updatedAt": Date
+        },
+        ...
+      ]
+    }
+    ```
+
 ### Global Error
 #### Response
 _500 - Internal Server Error_
