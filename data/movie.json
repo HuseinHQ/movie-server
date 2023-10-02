@@ -1,0 +1,92 @@
+[
+  {
+      "title": "Movie 1",
+      "synopsis": "Synopsis of Movie 1",
+      "trailerUrl": "https://www.example.com/trailer1",
+      "imgUrl": "https://www.example.com/image1",
+      "rating": 8,
+      "genreId": 3,
+      "authorId": 7
+  },
+  {
+      "title": "Movie 2",
+      "synopsis": "Synopsis of Movie 2",
+      "trailerUrl": "https://www.example.com/trailer2",
+      "imgUrl": "https://www.example.com/image2",
+      "rating": 9,
+      "genreId": 5,
+      "authorId": 2
+  },
+  {
+      "title": "Movie 3",
+      "synopsis": "Synopsis of Movie 3",
+      "trailerUrl": "https://www.example.com/trailer3",
+      "imgUrl": "https://www.example.com/image3",
+      "rating": 8,
+      "genreId": 1,
+      "authorId": 10
+  },
+  {
+      "title": "Movie 4",
+      "synopsis": "Synopsis of Movie 4",
+      "trailerUrl": "https://www.example.com/trailer4",
+      "imgUrl": "https://www.example.com/image4",
+      "rating": 8,
+      "genreId": 8,
+      "authorId": 4
+  },
+  {
+      "title": "Movie 5",
+      "synopsis": "Synopsis of Movie 5",
+      "trailerUrl": "https://www.example.com/trailer5",
+      "imgUrl": "https://www.example.com/image5",
+      "rating": 7,
+      "genreId": 2,
+      "authorId": 6
+  },
+  {
+      "title": "Movie 6",
+      "synopsis": "Synopsis of Movie 6",
+      "trailerUrl": "https://www.example.com/trailer6",
+      "imgUrl": "https://www.example.com/image6",
+      "rating": 9,
+      "genreId": 7,
+      "authorId": 9
+  },
+  {
+      "title": "Movie 7",
+      "synopsis": "Synopsis of Movie 7",
+      "trailerUrl": "https://www.example.com/trailer7",
+      "imgUrl": "https://www.example.com/image7",
+      "rating": 8,
+      "genreId": 4,
+      "authorId": 5
+  },
+  {
+      "title": "Movie 8",
+      "synopsis": "Synopsis of Movie 8",
+      "trailerUrl": "https://www.example.com/trailer8",
+      "imgUrl": "https://www.example.com/image8",
+      "rating": 7,
+      "genreId": 6,
+      "authorId": 3
+  },
+  {
+      "title": "Movie 9",
+      "synopsis": "Synopsis of Movie 9",
+      "trailerUrl": "https://www.example.com/trailer9",
+      "imgUrl": "https://www.example.com/image9",
+      "rating": 8,
+      "genreId": 9,
+      "authorId": 8
+  },
+  {
+      "title": "Movie 10",
+      "synopsis": "Synopsis of Movie 10",
+      "trailerUrl": "https://www.example.com/trailer10",
+      "imgUrl": "https://www.example.com/image10",
+      "rating": 9,
+      "genreId": 10,
+      "authorId": 1
+  }
+]
