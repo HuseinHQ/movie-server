@@ -1,6 +1,6 @@
 const { User } = require('../models/');
 const bcryptjs = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const { generateToken } = require('../helpers/jwt');
 
 class UserControlller {
   static async register(req, res, next) {
@@ -37,10 +37,9 @@ class UserControlller {
             id: user.id,
             email: user.email
           }
-          const SECRET_KEY = process.env.SECRET_KEY;
-          const access_token = jwt.sign(payload, SECRET_KEY);
 
-          // req.headers.access_token = access_token;
+          const access_token = generateToken(payload);
+
           res.status(200).json({ access_token })
         } else {
           throw { name: 'Invalid credentials' }

@@ -3,9 +3,8 @@ const { User } = require('../models/')
 
 async function verifyToken(req, res, next) {
   try {
-    const { SECRET_KEY } = process.env
     const { access_token } = req.headers;
-    const payload = jwt.verify(access_token, SECRET_KEY)
+    const payload = verifyToken(access_token);
 
     const user = await User.findByPk(payload.id)
     if (!user) {
