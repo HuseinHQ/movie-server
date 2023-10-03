@@ -37,9 +37,10 @@ class UserControlller {
             id: user.id,
             email: user.email
           }
-          const SECRET_KEY = 'ThisIsMyAppSecretKey@463128'
+          const SECRET_KEY = process.env.SECRET_KEY;
           const access_token = jwt.sign(payload, SECRET_KEY);
 
+          // req.headers.access_token = access_token;
           res.status(200).json({ access_token })
         } else {
           throw { name: 'Invalid credentials' }

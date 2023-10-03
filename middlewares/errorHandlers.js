@@ -18,6 +18,11 @@ function errorHandler(err, req, res, next) {
     case 'not found':
       status = 404;
       message = 'error not found'
+      break;
+    case 'JsonWebTokenError':
+      status = 401;
+      message = 'Invalid Token';
+      break;
   }
 
   res.status(status).json({ message })

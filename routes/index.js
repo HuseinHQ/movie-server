@@ -3,11 +3,14 @@ const router = express.Router();
 const MovieController = require('../controllers/MovieController');
 const GenreController = require('../controllers/GenreController');
 const UserControlller = require('../controllers/UserController');
+const { verifyToken } = require('../middlewares/authentication');
 
-// REGISTER
+// REGISTER AND LOGIN
 router.post('/register', UserControlller.register)
-//LOGIN
 router.post('/login', UserControlller.login)
+
+// AUTHENTICATION
+router.use(verifyToken);
 
 router.get('/movies', MovieController.getMovie);
 router.post('/movies', MovieController.postMovie);
