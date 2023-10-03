@@ -4,6 +4,8 @@ List of Available Endpoints:
 - `POST /movies`
 - `GET /movies`
 - `GET /movies/:id`
+- `GET /genres`
+- `POST /register`
 
 ### POST /movies
 #### Description
@@ -169,6 +171,41 @@ _200 - OK_
         },
         ...
       ]
+    }
+    ```
+
+## POST /register
+### Description
+- Create a user with role 'admin'
+
+#### Request
+- Body
+    ```json
+    {
+      "email": String, // (unique constraint)
+      "password": String, 
+    }
+    ```
+### Response
+_201 - Created_
+- Body
+    ```json
+    {
+      "statusCode": 201,
+      "data": {
+        "id": Integer,
+        "email": String,
+      },
+    }
+    ```
+_400 - Bad Request_
+- Body
+    ```json
+    {
+      "statusCode": 400,
+      "data": {
+        "message": "Email already exists"
+      },
     }
     ```
 
