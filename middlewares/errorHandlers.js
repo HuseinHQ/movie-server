@@ -23,6 +23,10 @@ function errorHandler(err, req, res, next) {
       status = 401;
       message = 'Invalid Token';
       break;
+    case 'forbidden':
+      status = 403;
+      message = 'Forbidden'
+      break;
   }
 
   res.status(status).json({ message })

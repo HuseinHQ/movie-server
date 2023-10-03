@@ -4,6 +4,8 @@ const MovieController = require('../controllers/MovieController');
 const GenreController = require('../controllers/GenreController');
 const UserControlller = require('../controllers/UserController');
 const { verifyToken } = require('../middlewares/authentication');
+const { deleteMovie } = require('../middlewares/authorization');
+
 
 // REGISTER AND LOGIN
 router.post('/register', UserControlller.register)
@@ -15,7 +17,7 @@ router.use(verifyToken);
 router.get('/movies', MovieController.getMovie);
 router.post('/movies', MovieController.postMovie);
 router.get('/movies/:id', MovieController.getMovieDetail);
-router.delete('/movies/:id', MovieController.deleteMovie);
+router.delete('/movies/:id', deleteMovie, MovieController.deleteMovie);
 router.get('/genres', GenreController.getGenre)
 
 module.exports = router;

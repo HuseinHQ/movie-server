@@ -4,9 +4,9 @@ const { Movie } = require('../models/')
 class MovieController {
   static async postMovie(req, res, next) {
     try {
-      const { title, synopsis, trailerUrl, imgUrl, rating, genreId, authorId } = req.body;
+      const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
 
-      const newMovie = await Movie.create({ title, synopsis, trailerUrl, imgUrl, rating, genreId, authorId });
+      const newMovie = await Movie.create({ title, synopsis, trailerUrl, imgUrl, rating, genreId, authorId: req.user.id });
       res.status(201).json(newMovie);
     } catch (error) {
       next(error)
