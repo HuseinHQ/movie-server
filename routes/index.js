@@ -7,7 +7,7 @@ const UserControlller = require('../controllers/UserController');
 // REGISTER
 router.post('/register', UserControlller.register)
 //LOGIN
-router.post('/login')
+router.post('/login', UserControlller.login)
 
 router.get('/movies', MovieController.getMovie);
 router.post('/movies', MovieController.postMovie);

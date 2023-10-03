@@ -209,6 +209,40 @@ _400 - Bad Request_
     }
     ```
 
+## POST /login
+### Description
+- Login with any role, 'staff' or 'admin'
+
+#### Request
+- Body
+    ```json
+    {
+      "email": String,
+      "password": String, 
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "access_token": String
+      },
+    }
+    ```
+_401 - Unauthorized_
+- Body
+    ```json
+    {
+      "statusCode": 401,
+      "data": {
+        "error": "invalid username or email or password"
+      },
+    }
+    ```
+
 ### Global Error
 #### Response
 _500 - Internal Server Error_
