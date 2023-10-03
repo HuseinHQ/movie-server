@@ -43,7 +43,7 @@ class MovieController {
       const deletedMovie = await Movie.destroy({ where: { id } });
 
       if (deletedMovie) {
-        res.status(200).json({ message: 'Movies success to delete' });
+        res.status(200).json({ message: `Movie with id ${id} success to delete` });
       } else {
         throw { name: 'not found' }
       }
