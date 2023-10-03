@@ -3,13 +3,14 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 class UserControlller {
-  static async register(req, res) {
+  static async register(req, res, next) {
     try {
       const { email, password } = req.body;
 
       const user = await User.create({
         email,
         password,
+        role: 'admin'
       })
 
       res.status(201).json({
@@ -17,24 +18,11 @@ class UserControlller {
         email: user.email,
       })
     } catch (err) {
-      if (err.name === 'SequelizeValidationError') {
-        const error = err.errors.map(el => el.message)
-        res.status(400).json({
-          message: error
-        })
-      } else if (err.name === 'SequelizeUniqueConstraintError') {
-        res.status(400).json({
-          message: 'Email already exists'
-        })
-      } else {
-        res.status(500).json({
-          message: 'Internal Server Error'
-        })
-      }
+      next(err)
     }
   }
 
-  static async login(req, res) {
+  static async login(req, res, next) {
     try {
       const { email, password } = req.body;
       const user = await User.findOne({
@@ -49,23 +37,18 @@ class UserControlller {
             id: user.id,
             email: user.email
           }
-          const access_token = jwt.sign(payload, 'ThisIsMyAppSecretKey@463128');
+          const SECRET_KEY = 'ThisIsMyAppSecretKey@463128'
+          const access_token = jwt.sign(payload, SECRET_KEY);
 
           res.status(200).json({ access_token })
         } else {
-          res.status(401).json({
-            error: 'invalid username or email or password'
-          })
+          throw { name: 'Invalid credentials' }
         }
       } else {
-        res.status(401).json({
-          error: 'invalid username or email or password'
-        })
+        throw { name: 'Invalid credentials' }
       }
     } catch (err) {
-      res.status(500).json({
-        message: 'Internal Server Error'
-      })
+      next(err);
     }
   }
 }

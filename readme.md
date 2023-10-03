@@ -6,6 +6,7 @@ List of Available Endpoints:
 - `GET /movies/:id`
 - `GET /genres`
 - `POST /register`
+- `POST /login`
 
 ### POST /movies
 #### Description
