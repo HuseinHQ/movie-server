@@ -6,6 +6,8 @@ const UserControlller = require('../controllers/UserController');
 const { verifyToken } = require('../middlewares/authentication');
 const { deleteMovie } = require('../middlewares/authorization');
 
+// LOGIN WITH GOOGLE
+router.post('/google-login', UserControlller.googleLogin)
 
 // REGISTER AND LOGIN
 router.post('/register', UserControlller.register)
