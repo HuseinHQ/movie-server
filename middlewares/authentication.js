@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken')
-const { User } = require('../models/')
+const { User } = require('../models/');
+const { verifyToken } = require('../helpers/jwt');
 
-async function verifyToken(req, res, next) {
+async function authentication(req, res, next) {
   try {
     const { access_token } = req.headers;
     const payload = verifyToken(access_token);
@@ -23,4 +23,4 @@ async function verifyToken(req, res, next) {
   }
 }
 
-module.exports = { verifyToken }
+module.exports = authentication
