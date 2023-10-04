@@ -72,7 +72,7 @@ class UserControlller {
           password: String((Math.random() * 5) + 1),
           role: 'staff'
         },
-        hook: false
+        hooks: false
       })
 
       const access_token = generateToken({ id: user.id })

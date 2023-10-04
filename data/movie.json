@@ -1,92 +1,101 @@
 [
-  {
-      "title": "Movie 1",
-      "synopsis": "Synopsis of Movie 1",
-      "trailerUrl": "https://www.example.com/trailer1",
-      "imgUrl": "https://www.example.com/image1",
-      "rating": 8,
-      "genreId": 3,
-      "authorId": 7
-  },
-  {
-      "title": "Movie 2",
-      "synopsis": "Synopsis of Movie 2",
-      "trailerUrl": "https://www.example.com/trailer2",
-      "imgUrl": "https://www.example.com/image2",
-      "rating": 9,
-      "genreId": 5,
-      "authorId": 2
-  },
-  {
-      "title": "Movie 3",
-      "synopsis": "Synopsis of Movie 3",
-      "trailerUrl": "https://www.example.com/trailer3",
-      "imgUrl": "https://www.example.com/image3",
-      "rating": 8,
-      "genreId": 1,
-      "authorId": 10
-  },
-  {
-      "title": "Movie 4",
-      "synopsis": "Synopsis of Movie 4",
-      "trailerUrl": "https://www.example.com/trailer4",
-      "imgUrl": "https://www.example.com/image4",
-      "rating": 8,
-      "genreId": 8,
-      "authorId": 4
-  },
-  {
-      "title": "Movie 5",
-      "synopsis": "Synopsis of Movie 5",
-      "trailerUrl": "https://www.example.com/trailer5",
-      "imgUrl": "https://www.example.com/image5",
-      "rating": 7,
-      "genreId": 2,
-      "authorId": 6
-  },
-  {
-      "title": "Movie 6",
-      "synopsis": "Synopsis of Movie 6",
-      "trailerUrl": "https://www.example.com/trailer6",
-      "imgUrl": "https://www.example.com/image6",
-      "rating": 9,
-      "genreId": 7,
-      "authorId": 9
-  },
-  {
-      "title": "Movie 7",
-      "synopsis": "Synopsis of Movie 7",
-      "trailerUrl": "https://www.example.com/trailer7",
-      "imgUrl": "https://www.example.com/image7",
-      "rating": 8,
-      "genreId": 4,
-      "authorId": 5
-  },
-  {
-      "title": "Movie 8",
-      "synopsis": "Synopsis of Movie 8",
-      "trailerUrl": "https://www.example.com/trailer8",
-      "imgUrl": "https://www.example.com/image8",
-      "rating": 7,
-      "genreId": 6,
-      "authorId": 3
-  },
-  {
-      "title": "Movie 9",
-      "synopsis": "Synopsis of Movie 9",
-      "trailerUrl": "https://www.example.com/trailer9",
-      "imgUrl": "https://www.example.com/image9",
-      "rating": 8,
-      "genreId": 9,
-      "authorId": 8
-  },
-  {
-      "title": "Movie 10",
-      "synopsis": "Synopsis of Movie 10",
-      "trailerUrl": "https://www.example.com/trailer10",
-      "imgUrl": "https://www.example.com/image10",
-      "rating": 9,
-      "genreId": 10,
-      "authorId": 1
-  }
+    {
+        "title": "Divergent",
+        "synopsis": "Divergent adalah film fiksi ilmiah Amerika tahun 2014 yang berdasarkan novel yang berjudul sama karya Veronica Roth.",
+        "trailerUrl": "https://www.youtube.com/watch?v=sutgWjz10sM",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/d/d4/Divergent.jpg",
+        "rating": 8,
+        "genreId": 3,
+        "authorId": 7
+    },
+    {
+        "title": "Inception",
+        "synopsis": "Inception adalah film fiksi ilmiah aksi-petualangan Amerika Serikat tahun 2010 yang disutradarai oleh Christopher Nolan.",
+        "trailerUrl": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
+        "rating": 9,
+        "genreId": 2,
+        "authorId": 4
+    },
+    {
+        "title": "The Matrix",
+        "synopsis": "The Matrix adalah film aksi ilmiah Amerika Serikat tahun 1999 yang disutradarai oleh Wachowskis.",
+        "trailerUrl": "https://www.youtube.com/watch?v=m8e-FF8MsqU",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
+        "rating": 9,
+        "genreId": 1,
+        "authorId": 8
+    },
+    {
+        "title": "Jurassic Park",
+        "synopsis": "Jurassic Park adalah film petualangan fiksi ilmiah Amerika Serikat tahun 1993 yang disutradarai oleh Steven Spielberg.",
+        "trailerUrl": "https://www.youtube.com/watch?v=lc0UehYemQA",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg",
+        "rating": 8,
+        "genreId": 4,
+        "authorId": 2
+    },
+    {
+        "title": "Avatar",
+        "synopsis": "Avatar adalah film fiksi ilmiah Amerika Serikat tahun 2009 yang ditulis dan disutradarai oleh James Cameron.",
+        "trailerUrl": "https://www.youtube.com/watch?v=5PSNL1qE6VY",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/b/b0/Avatar-Teaser-Poster.jpg",
+        "rating": 8,
+        "genreId": 3,
+        "authorId": 6
+    },
+    {
+        "title": "Spider-Man: No Way Home",
+        "synopsis": "Spider-Man: No Way Home adalah film pahlawan super Amerika Serikat berdasarkan karakter Marvel Comics, Spider-Man, yang diproduksi bersama oleh Marvel Studios, Columbia Pictures dan Pascal Pictures, dan didistribusikan oleh Sony Pictures Releasing.",
+        "trailerUrl": "https://www.youtube.com/watch?v=JfVOs4VSpmA",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/2/20/Poster_Spider-Man_No_Way_Home.jpg",
+        "rating": 8,
+        "genreId": 5,
+        "authorId": 1
+    },
+    {
+        "title": "Interstellar",
+        "synopsis": "Interstellar adalah film petualangan fiksi ilmiah Amerika Serikat tahun 2014 yang disutradarai oleh Christopher Nolan.",
+        "trailerUrl": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
+        "rating": 9,
+        "genreId": 2,
+        "authorId": 3
+    },
+    {
+        "title": "The Martian",
+        "synopsis": "The Martian adalah film drama fiksi ilmiah Amerika Serikat tahun 2015 yang disutradarai oleh Ridley Scott.",
+        "trailerUrl": "https://www.youtube.com/watch?v=ej3ioOneTy8",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/c/cd/The_Martian_film_poster.jpg",
+        "rating": 8,
+        "genreId": 1,
+        "authorId": 9
+    },
+    {
+        "title": "Gravity",
+        "synopsis": "Gravity adalah film thriller fiksi ilmiah Amerika Serikat tahun 2013 yang disutradarai oleh Alfonso Cuarón.",
+        "trailerUrl": "https://www.youtube.com/watch?v=OiTiKOy59o4",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/f/f6/Gravity_Poster.jpg",
+        "rating": 8,
+        "genreId": 4,
+        "authorId": 5
+    },
+    {
+        "title": "E.T. the Extra-Terrestrial",
+        "synopsis": "E.T. the Extra-Terrestrial adalah film fiksi ilmiah fantasi Amerika Serikat tahun 1982 yang disutradarai oleh Steven Spielberg.",
+        "trailerUrl": "https://www.youtube.com/watch?v=Z1LaSvC9U9M",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/6/66/E_t_the_extra_terrestrial_ver3.jpg",
+        "rating": 8,
+        "genreId": 3,
+        "authorId": 7
+    },
+    {
+        "title": "Star Wars: Episode IV - A New Hope",
+        "synopsis": "Star Wars: Episode IV - A New Hope adalah film opera ruang angkasa Amerika Serikat tahun 1977 yang disutradarai oleh George Lucas.",
+        "trailerUrl": "https://www.youtube.com/watch?v=1g3_CFmnU7k",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg",
+        "rating": 9,
+        "genreId": 5,
+        "authorId": 10
+    }
 ]
