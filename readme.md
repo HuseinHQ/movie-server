@@ -13,6 +13,12 @@ List of Available Endpoints:
 - Create a new movie
 
 #### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
 - Body
     ```json
     {
@@ -65,6 +71,13 @@ _400 - Bad Request_
 #### Description
 - Get all movies from database
 
+#### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
 #### Response
 _200 - OK_
 
@@ -94,6 +107,13 @@ _200 - OK_
 #### Description
 - Get movie detail from database
 
+#### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
 #### Response
 _200 - OK_
 
@@ -130,6 +150,13 @@ _404 - Not Found_
 ### Description
 - Delete one movie by id from database
 
+### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
 ### Response
 _200 - OK_
 - Body
@@ -157,6 +184,13 @@ _404 - Not Found_
 ### Description
 - Get all genres from database
 
+### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
 ### Response
 _200 - OK_
 - Body

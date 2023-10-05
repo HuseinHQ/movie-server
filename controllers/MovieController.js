@@ -1,5 +1,5 @@
 const bcryptjs = require('bcryptjs');
-const { Movie } = require('../models/')
+const { Movie, User, Genre } = require('../models/')
 
 class MovieController {
   static async postMovie(req, res, next) {
@@ -15,7 +15,9 @@ class MovieController {
 
   static async getMovie(req, res, next) {
     try {
-      const movies = await Movie.findAll();
+      const movies = await Movie.findAll({
+        include: [User, Genre]
+      });
       res.status(200).json(movies);
     } catch (error) {
       next(error)
