@@ -290,3 +290,8 @@ _500 - Internal Server Error_
       }
     }
     ```
+
+
+**deployed links**: 
+- server: _https://movie-server.huseinhk.me_
+- client: _https://movie-app-client-31577.web.app/_
