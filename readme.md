@@ -280,6 +280,13 @@ _401 - Unauthorized_
 
 ### Global Error
 #### Response
+_401 - Unauthorized_
+- Body
+    ```json
+    {
+      "message": "Invalid Token"
+    }
+    ```
 _500 - Internal Server Error_
 - Body
     ```json
