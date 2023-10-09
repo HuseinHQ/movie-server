@@ -20,6 +20,7 @@ router.get("/movies", MovieController.getMovie);
 router.post("/movies", MovieController.postMovie);
 router.get("/movies/:id", MovieController.getMovieDetail);
 router.put("/movies/:id", MovieController.putMovie);
+router.patch("/movies/:id", MovieController.patchMovie);
 router.delete("/movies/:id", deleteMovie, MovieController.deleteMovie);
 router.get("/genres", GenreController.getGenre);
 

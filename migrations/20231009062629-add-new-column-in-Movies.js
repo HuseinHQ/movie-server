@@ -5,7 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn("Movies", "status", {
       type: Sequelize.STRING,
-      defaultValue: "active",
+      defaultValue: "Active",
       allowNull: false,
     });
   },

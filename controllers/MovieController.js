@@ -59,12 +59,6 @@ class MovieController {
       const { id } = req.params;
       const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
 
-      // CARI APAKAH MOVIE DENGAN ID TERSEBUT ADA
-      // const findMovie = await Movie.findByPk(id);
-      // if (!findMovie) {
-      //   throw { name: "not found" };
-      // }
-
       const updatedMovie = await Movie.update(
         {
           title,
@@ -82,7 +76,23 @@ class MovieController {
         throw { name: "not found" };
       }
 
-      res.status(201).json({ message: `Movie with id ${id} updated` });
+      res.status(200).json({ message: `Movie with id ${id} updated` });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async patchMovie(req, res, next) {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+
+      const patchedMovie = await Movie.update({ status }, { where: { id } });
+      if (patchedMovie[0] === 0) {
+        throw { name: "not found" };
+      }
+
+      res.status(200).json({ message: `Movie with id ${id} set to ${status}` });
     } catch (error) {
       next(error);
     }
