@@ -3,6 +3,7 @@ const router = express.Router();
 const MovieController = require("../controllers/MovieController");
 const GenreController = require("../controllers/GenreController");
 const UserControlller = require("../controllers/UserController");
+const HistoryController = require("../controllers/HistoryController");
 const authentication = require("../middlewares/authentication");
 const { changeMovie, setMovieStatus } = require("../middlewares/authorization");
 
@@ -23,5 +24,6 @@ router.put("/movies/:id", changeMovie, MovieController.putMovie);
 router.patch("/movies/:id", setMovieStatus, MovieController.patchMovie);
 router.delete("/movies/:id", changeMovie, MovieController.deleteMovie);
 router.get("/genres", GenreController.getGenre);
+router.get("/histories", HistoryController.getHistories);
 
 module.exports = router;
