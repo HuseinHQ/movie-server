@@ -1,22 +1,16 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
-  }],
-
-  deploy : {
-    production : {
-      user : 'SSH_USERNAME',
-      host : 'SSH_HOSTMACHINE',
-      ref  : 'origin/master',
-      repo : 'GIT_REPOSITORY',
-      path : 'DESTINATION_PATH',
-      'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
-      'pre-setup': ''
-    }
-  }
+  apps: [
+    {
+      name: "app1",
+      script: "./app.js",
+      env: {
+        NODE_ENV: "production",
+        PORT: 80,
+        DATABASE_URL: "postgresql://postgres:jhhntuZYiNmi0wui@db.hpcayumwifnnltrpqpyq.supabase.co:5432/postgres",
+        SECRET_KEY: "ThisIsMyAppSecretKey@463128",
+        GOOGLE_CLIENT_ID: "782243135980-7dfmhrfqah531g5ob5u200trjrkl0ah2.apps.googleusercontent.com",
+      },
+    },
+  ],
 };
+
