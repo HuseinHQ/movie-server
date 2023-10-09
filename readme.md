@@ -7,6 +7,8 @@ List of Available Endpoints:
 - `GET /genres`
 - `POST /register`
 - `POST /login`
+- `PUT /movies/:id`
+- `PATCH /movies/:id`
 
 ### POST /movies
 #### Description
@@ -28,7 +30,6 @@ List of Available Endpoints:
       "imgUrl": String,
       "rating": Integer, // (validation: min rating 1)
       "genreId": Integer,
-      "authorId": Integer,
     }
     ```
 #### Response
@@ -274,6 +275,89 @@ _401 - Unauthorized_
       "statusCode": 401,
       "data": {
         "error": "invalid username or email or password"
+      },
+    }
+    ```
+
+## PUT /movies/:id
+### Description
+- Update movie details
+
+#### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+- Body
+    ```json
+    {
+      "title": String, // (validation: required)
+      "synopsis": String, // (validation: required)
+      "trailerUrl": String,
+      "imgUrl": String,
+      "rating": Integer, // (validation: min rating 1)
+      "genreId": Integer,
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "message": "Movie with id ${id} updated"
+      },
+    }
+    ```
+_404 - Not Found_
+- Body
+    ```json
+    {
+      "statusCode": 404,
+      "data": {
+        "message": "error not found"
+      },
+    }
+    ```
+
+## PATCH /movies/:id
+### Description
+- Update movie status
+
+#### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+- Body
+    ```json
+    {
+      "status": String,
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "message": "Movie with id ${id} set to Active Inactive || Archived"
+      },
+    }
+    ```
+_404 - Not Found_
+- Body
+    ```json
+    {
+      "statusCode": 404,
+      "data": {
+        "message": "error not found"
       },
     }
     ```
