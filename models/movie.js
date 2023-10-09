@@ -51,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     genreId: DataTypes.INTEGER,
-    authorId: DataTypes.INTEGER
+    authorId: DataTypes.INTEGER,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Movie',
