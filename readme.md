@@ -169,7 +169,16 @@ _200 - OK_
       }
     }
     ```
-
+_403 - Forbidden_
+- Body
+    ```json
+    {
+      "statusCode": 403,
+      "data": {
+        "message": "Forbidden"
+      },
+    }
+    ```
 _404 - Not Found_
 - Body
     ```json
@@ -312,6 +321,16 @@ _200 - OK_
       },
     }
     ```
+_403 - Forbidden_
+- Body
+    ```json
+    {
+      "statusCode": 403,
+      "data": {
+        "message": "Forbidden"
+      },
+    }
+    ```
 _404 - Not Found_
 - Body
     ```json
@@ -348,6 +367,16 @@ _200 - OK_
       "statusCode": 200,
       "data": {
         "message": "Movie with id ${id} set to Active Inactive || Archived"
+      },
+    }
+    ```
+_403 - Forbidden_
+- Body
+    ```json
+    {
+      "statusCode": 403,
+      "data": {
+        "message": "Forbidden"
       },
     }
     ```

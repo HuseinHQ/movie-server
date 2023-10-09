@@ -4,7 +4,7 @@ const MovieController = require("../controllers/MovieController");
 const GenreController = require("../controllers/GenreController");
 const UserControlller = require("../controllers/UserController");
 const authentication = require("../middlewares/authentication");
-const { deleteMovie } = require("../middlewares/authorization");
+const { changeMovie, setMovieStatus } = require("../middlewares/authorization");
 
 // LOGIN WITH GOOGLE
 router.post("/google-login", UserControlller.googleLogin);
@@ -19,9 +19,9 @@ router.use(authentication);
 router.get("/movies", MovieController.getMovie);
 router.post("/movies", MovieController.postMovie);
 router.get("/movies/:id", MovieController.getMovieDetail);
-router.put("/movies/:id", MovieController.putMovie);
-router.patch("/movies/:id", MovieController.patchMovie);
-router.delete("/movies/:id", deleteMovie, MovieController.deleteMovie);
+router.put("/movies/:id", changeMovie, MovieController.putMovie);
+router.patch("/movies/:id", setMovieStatus, MovieController.patchMovie);
+router.delete("/movies/:id", changeMovie, MovieController.deleteMovie);
 router.get("/genres", GenreController.getGenre);
 
 module.exports = router;

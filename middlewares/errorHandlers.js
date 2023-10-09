@@ -1,35 +1,43 @@
 function errorHandler(err, req, res, next) {
   let status = 500;
-  let message = 'Internal Server Error';
+  let message = "Internal Server Error";
   switch (err.name) {
-    case 'SequelizeValidationError':
-      const error = err.errors.map(el => el.message)
+    case "SequelizeValidationError":
+      const error = err.errors.map((el) => el.message);
       status = 400;
-      message = error
+      message = error;
       break;
-    case 'SequelizeUniqueConstraintError':
+    case "SequelizeUniqueConstraintError":
       status = 400;
-      message = 'Email already exists';
+      message = "Email already exists";
       break;
-    case 'Invalid credentials':
+    case "Invalid credentials":
       status = 401;
-      message = 'invalid username or email or password'
+      message = "invalid username or email or password";
       break;
-    case 'not found':
+    case "not found":
       status = 404;
-      message = 'error not found'
+      message = "error not found";
       break;
-    case 'JsonWebTokenError':
+    case "JsonWebTokenError":
       status = 401;
-      message = 'Invalid Token';
+      message = "Invalid Token";
       break;
-    case 'forbidden':
+    case "forbidden":
       status = 403;
-      message = 'Forbidden'
+      message = "Forbidden";
+      break;
+    case "same status":
+      status = 400;
+      message = `Status is already ${err.status}`;
+      break;
+    case "invalid_status":
+      status = 400;
+      message = "Invalid status";
       break;
   }
 
-  res.status(status).json({ message })
+  res.status(status).json({ message });
 }
 
-module.exports = errorHandler
+module.exports = errorHandler;

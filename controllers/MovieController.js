@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const { Movie, User, Genre } = require("../models/");
+const { Movie, User, Genre, History } = require("../models/");
 
 class MovieController {
   static async postMovie(req, res, next) {
@@ -7,6 +7,12 @@ class MovieController {
       const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
 
       const newMovie = await Movie.create({ title, synopsis, trailerUrl, imgUrl, rating, genreId, authorId: req.user.id });
+
+      await History.create({
+        title,
+        description: `POST : new movie with ${newMovie.id} created`,
+        updatedBy: req.user.email,
+      });
       res.status(201).json(newMovie);
     } catch (error) {
       next(error);
@@ -59,7 +65,12 @@ class MovieController {
       const { id } = req.params;
       const { title, synopsis, trailerUrl, imgUrl, rating, genreId } = req.body;
 
-      const updatedMovie = await Movie.update(
+      const findMovie = await Movie.findByPk(id);
+      if (!findMovie) {
+        throw { name: "not found" };
+      }
+
+      await Movie.update(
         {
           title,
           synopsis,
@@ -67,15 +78,15 @@ class MovieController {
           imgUrl,
           rating,
           genreId,
-          authorId: req.user.id,
         },
         { where: { id } }
       );
 
-      if (updatedMovie[0] === 0) {
-        throw { name: "not found" };
-      }
-
+      await History.create({
+        title: title,
+        description: `PUT: movie with ${id} updated`,
+        updatedBy: req.user.email,
+      });
       res.status(200).json({ message: `Movie with id ${id} updated` });
     } catch (error) {
       next(error);
@@ -87,11 +98,29 @@ class MovieController {
       const { id } = req.params;
       const { status } = req.body;
 
-      const patchedMovie = await Movie.update({ status }, { where: { id } });
-      if (patchedMovie[0] === 0) {
+      // CEK APAKAH STATUS YANG DIBERIKAN VALID
+      const isStatusValid = ["Active", "Inactive", "Archived"].includes(status) ? true : false;
+      console.log(isStatusValid);
+      if (!isStatusValid) {
+        throw { name: "invalid_status" };
+      }
+
+      const findMovie = await Movie.findByPk(id);
+      if (!findMovie) {
         throw { name: "not found" };
       }
 
+      if (findMovie.status === status) {
+        throw { name: "same status", status };
+      }
+
+      await Movie.update({ status }, { where: { id } });
+
+      await History.create({
+        title: findMovie.title,
+        description: `Movie status with ${id} has been updated from ${findMovie.status} into ${status}`,
+        updatedBy: req.user.email,
+      });
       res.status(200).json({ message: `Movie with id ${id} set to ${status}` });
     } catch (error) {
       next(error);
