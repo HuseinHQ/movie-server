@@ -10,7 +10,7 @@ class MovieController {
 
       await History.create({
         title,
-        description: `POST : new movie with ${newMovie.id} created`,
+        description: `POST : new movie with id ${newMovie.id} created`,
         updatedBy: req.user.email,
       });
       res.status(201).json(newMovie);
@@ -84,7 +84,7 @@ class MovieController {
 
       await History.create({
         title: title,
-        description: `PUT: movie with ${id} updated`,
+        description: `PUT: movie with id ${id} updated`,
         updatedBy: req.user.email,
       });
       res.status(200).json({ message: `Movie with id ${id} updated` });
@@ -118,7 +118,7 @@ class MovieController {
 
       await History.create({
         title: findMovie.title,
-        description: `Movie status with ${id} has been updated from ${findMovie.status} into ${status}`,
+        description: `PATCH: Movie status with id ${id} has been updated from ${findMovie.status} into ${status}`,
         updatedBy: req.user.email,
       });
       res.status(200).json({ message: `Movie with id ${id} set to ${status}` });

@@ -7,8 +7,10 @@ List of Available Endpoints:
 - `GET /genres`
 - `POST /register`
 - `POST /login`
+- `POST /google-login`
 - `PUT /movies/:id`
 - `PATCH /movies/:id`
+- `GET /users`
 
 ### POST /movies
 #### Description
@@ -221,14 +223,17 @@ _200 - OK_
 
 ## POST /register
 ### Description
-- Create a user with role 'admin'
+- Create a new user (role: 'admin')
 
 #### Request
 - Body
     ```json
     {
+      "username": String,
       "email": String, // (unique constraint)
       "password": String, 
+      "phoneNumber": String,
+      "Address": String
     }
     ```
 ### Response
@@ -256,7 +261,7 @@ _400 - Bad Request_
 
 ## POST /login
 ### Description
-- Login with any role, 'staff' or 'admin'
+- Login into apps (admin)
 
 #### Request
 - Body
@@ -284,6 +289,40 @@ _401 - Unauthorized_
       "statusCode": 401,
       "data": {
         "error": "invalid username or email or password"
+      },
+    }
+    ```
+
+## POST /google-login
+### Description
+- Login or register (first-login) with google (role: staff)
+
+#### Request
+- Headers
+    ```json
+    {
+      "google_token": String,
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "access_token": String
+      },
+    }
+    ```
+
+_201 - Created_
+- Body
+    ```json
+    {
+      "statusCode": 201,
+      "data": {
+        "access_token": String
       },
     }
     ```
@@ -390,6 +429,44 @@ _404 - Not Found_
       },
     }
     ```
+
+## GET /users
+### Description
+- Get users detail
+
+#### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+- User
+    ```json
+    {
+      "id": Integer,
+    }
+    ```
+#### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+          "id": Integer,
+          "username": String,
+          "email": String,
+          "password": String,
+          "role": String,
+          "phoneNumber": String,
+          "address": String,
+          "createdAt": Date,
+          "updatedAt": Date
+      },
+    }
+    ```
+
 
 ### Global Error
 #### Response

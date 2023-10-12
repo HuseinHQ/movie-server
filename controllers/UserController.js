@@ -1,6 +1,6 @@
 const { User } = require("../models/");
 const bcryptjs = require("bcryptjs");
-const { generateToken } = require("../helpers/jwt");
+const { generateToken, verifyToken } = require("../helpers/jwt");
 const { OAuth2Client } = require("google-auth-library");
 
 class UserControlller {
@@ -85,6 +85,16 @@ class UserControlller {
       } else {
         res.status(200).json({ access_token });
       }
+    } catch (error) {
+      next(error);
+    }
+  }
+  static async getUser(req, res, next) {
+    try {
+      const { id } = req.user;
+      const findUser = await User.findByPk(id);
+
+      res.status(200).json(findUser);
     } catch (error) {
       next(error);
     }

@@ -17,6 +17,7 @@ router.post("/login", UserControlller.login);
 // AUTHENTICATION
 router.use(authentication);
 
+router.get("/users", UserControlller.getUser);
 router.get("/movies", MovieController.getMovie);
 router.post("/movies", MovieController.postMovie);
 router.get("/movies/:id", MovieController.getMovieDetail);
