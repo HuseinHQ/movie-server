@@ -1,45 +1,37 @@
-const { User } = require("../models/");
+const { Customer } = require("../models/");
 const bcryptjs = require("bcryptjs");
 const { generateToken } = require("../helpers/jwt");
 const { OAuth2Client } = require("google-auth-library");
 
-class UserControlller {
+class CustomerController {
   static async register(req, res, next) {
     try {
       const { username, email, password, phoneNumber, address } = req.body;
 
-      const user = await User.create({
-        username,
-        email,
-        password,
-        phoneNumber,
-        address,
-        role: "admin",
-      });
-
+      const newCustomer = await Customer.create({ username, email, password, phoneNumber, address });
       res.status(201).json({
-        id: user.id,
-        email: user.email,
+        id: newCustomer.id,
+        email: newCustomer.email,
       });
-    } catch (err) {
-      next(err);
+    } catch (error) {
+      next(error);
     }
   }
 
   static async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      const user = await User.findOne({
+      const findCustomer = await Customer.findOne({
         where: { email },
       });
 
-      if (user) {
-        const isPasswordValid = bcryptjs.compareSync(password, user.password);
+      if (findCustomer) {
+        const isPasswordValid = bcryptjs.compareSync(password, findCustomer.password);
 
         if (isPasswordValid) {
           const payload = {
-            id: user.id,
-            email: user.email,
+            id: findCustomer.id,
+            email: findCustomer.email,
           };
 
           const access_token = generateToken(payload);
@@ -52,6 +44,7 @@ class UserControlller {
         throw { name: "Invalid credentials" };
       }
     } catch (err) {
+      console.log(err);
       next(err);
     }
   }
@@ -67,18 +60,17 @@ class UserControlller {
       });
       const payload = ticket.getPayload();
 
-      const [user, created] = await User.findOrCreate({
+      const [customer, created] = await User.findOrCreate({
         where: { email: payload.email },
         defaults: {
           username: payload.name,
           email: payload.email,
           password: String(Math.random() * 5 + 1),
-          role: "staff",
         },
         hooks: false,
       });
 
-      const access_token = generateToken({ id: user.id });
+      const access_token = generateToken({ id: customer.id });
 
       if (created) {
         res.status(201).json({ access_token });
@@ -89,16 +81,6 @@ class UserControlller {
       next(error);
     }
   }
-  static async getUser(req, res, next) {
-    try {
-      const { id } = req.user;
-      const findUser = await User.findByPk(id);
-
-      res.status(200).json(findUser);
-    } catch (error) {
-      next(error);
-    }
-  }
 }
 
-module.exports = UserControlller;
+module.exports = CustomerController;

@@ -6,6 +6,7 @@ const UserControlller = require("../controllers/UserController");
 const HistoryController = require("../controllers/HistoryController");
 const authentication = require("../middlewares/authentication");
 const { changeMovie, setMovieStatus } = require("../middlewares/authorization");
+const publicRoutes = require("./public");
 
 // LOGIN WITH GOOGLE
 router.post("/google-login", UserControlller.googleLogin);
@@ -13,6 +14,9 @@ router.post("/google-login", UserControlller.googleLogin);
 // REGISTER AND LOGIN
 router.post("/register", UserControlller.register);
 router.post("/login", UserControlller.login);
+
+// PUBLIC ROUTE
+router.use("/pub", publicRoutes);
 
 // AUTHENTICATION
 router.use(authentication);

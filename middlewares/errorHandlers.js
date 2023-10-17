@@ -1,9 +1,10 @@
 function errorHandler(err, req, res, next) {
+  console.log(err);
   let status = 500;
   let message = "Internal Server Error";
   switch (err.name) {
     case "SequelizeValidationError":
-      const error = err.errors.map((el) => el.message);
+      const error = err.errors[0].message;
       status = 400;
       message = error;
       break;

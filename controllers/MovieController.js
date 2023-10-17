@@ -126,6 +126,28 @@ class MovieController {
       next(error);
     }
   }
+
+  static async getMovieWithPaginationAndFilter(req, res, next) {
+    try {
+      const { page = 1, size = 8, filter } = req.query;
+      const option = {
+        offset: page == 1 ? 0 : page * size,
+        limit: size,
+      };
+
+      if (filter) {
+        option.where = { genreId: filter };
+      }
+
+      const movies = await Movie.findAll({
+        include: [User, Genre],
+        ...option,
+      });
+      res.status(200).json(movies);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = MovieController;
