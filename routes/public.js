@@ -12,7 +12,9 @@ router.post("/google-login", CustomerController.googleLogin);
 router.get("/movies", MovieController.getMovieWithPaginationAndFilter);
 
 router.use(publicAuthentication);
+router.post("/customers", CustomerController.generateQrCode);
 router.get("/movies/:id", MovieController.getMovieDetail);
+router.post("/movies/:id", FavoriteController.postFavorite);
 router.get("/favorites", getFavorite, FavoriteController.getFavorites);
 
 module.exports = router;

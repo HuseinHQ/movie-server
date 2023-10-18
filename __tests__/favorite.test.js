@@ -1,7 +1,7 @@
 const app = require("../app");
-const { Favorite } = require("../models/");
+const { Favorite } = require("../models");
 const request = require("supertest");
-const { Customer, sequelize } = require("../models/");
+const { Customer, sequelize } = require("../models");
 const { hashPassword } = require("../helpers/bcrypt");
 const { generateToken } = require("../helpers/jwt");
 
@@ -90,8 +90,6 @@ describe("GET /pub/favorites", () => {
   it("should return favorite movies where customerId is same as customer's login id", async () => {
     const response = await request(app).get("/pub/favorites").set({ access_token });
 
-    console.log(response.body);
-
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     expect(response.body).toHaveLength(2);
@@ -112,5 +110,43 @@ describe("GET /pub/favorites", () => {
     expect(response.body[0].Movie).toHaveProperty("status", "Active");
     expect(response.body[0].Movie).toHaveProperty("createdAt", expect.any(String));
     expect(response.body[0].Movie).toHaveProperty("updatedAt", expect.any(String));
+  });
+
+  it("should fail if customer is not logged when attemp to access favorites", async () => {
+    const response = await request(app).get("/pub/favorites");
+
+    expect(response.status).toBe(401);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.body).toHaveProperty("message", "Invalid Token");
+  });
+
+  it("should fail if customer try to access favorites with fake access token", async () => {
+    const response = await request(app).get("/pub/favorites").set({ access_token: "random-string" });
+
+    expect(response.status).toBe(401);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.body).toHaveProperty("message", "Invalid Token");
+  });
+});
+
+describe("GET /pub/movies/:id", () => {
+  it("should return the new favorite created", async () => {
+    const response = await request(app).post("/pub/movies/1").set({ access_token });
+
+    expect(response.status).toBe(201);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.body).toHaveProperty("id", expect.any(Number));
+    expect(response.body).toHaveProperty("CustomerId", expect.any(Number));
+    expect(response.body).toHaveProperty("MovieId", expect.any(Number));
+    expect(response.body).toHaveProperty("createdAt", expect.any(String));
+    expect(response.body).toHaveProperty("updatedAt", expect.any(String));
+  });
+
+  it("should fail add to favorite when the movie id is not exists in database", async () => {
+    const response = await request(app).post("/pub/movies/99").set({ access_token });
+
+    expect(response.status).toBe(404);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.body).toHaveProperty("message", "error not found");
   });
 });

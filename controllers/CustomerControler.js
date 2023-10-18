@@ -2,6 +2,7 @@ const { Customer } = require("../models/");
 const bcryptjs = require("bcryptjs");
 const { generateToken } = require("../helpers/jwt");
 const { OAuth2Client } = require("google-auth-library");
+const axios = require("axios");
 
 class CustomerController {
   static async register(req, res, next) {
@@ -44,7 +45,6 @@ class CustomerController {
         throw { name: "Invalid credentials" };
       }
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -78,6 +78,21 @@ class CustomerController {
         res.status(200).json({ access_token });
       }
     } catch (error) {
+      next(error);
+    }
+  }
+
+  static async generateQrCode(req, res, next) {
+    try {
+      const { QR_CODE_API_KEY } = process.env;
+      const generatedQrCode = await axios({
+        method: "post",
+        url: "https://api.qr-code-generator.com/v1/create?access-token=" + QR_CODE_API_KEY,
+      });
+
+      res.status(201).json({ qrcode: generatedQrCode.data });
+    } catch (error) {
+      console.log(error);
       next(error);
     }
   }

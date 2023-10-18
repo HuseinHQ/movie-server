@@ -133,14 +133,16 @@ class MovieController {
       const option = {
         offset: page == 1 ? 0 : page * size,
         limit: size,
+        where: { status: "Active" },
       };
 
       if (filter) {
-        option.where = { genreId: filter };
+        option.where.genreId = filter;
       }
 
       const movies = await Movie.findAll({
         include: [User, Genre],
+        order: [["id", "ASC"]],
         ...option,
       });
       res.status(200).json(movies);

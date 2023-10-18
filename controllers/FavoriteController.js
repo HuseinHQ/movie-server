@@ -15,6 +15,24 @@ class FavoriteController {
       next(error);
     }
   }
+
+  static async postFavorite(req, res, next) {
+    try {
+      console.log("masuk");
+      const { id } = req.params;
+
+      const findMovie = await Movie.findByPk(id);
+      if (!findMovie) {
+        throw { name: "not found" };
+      }
+
+      const newFavorite = await Favorite.create({ CustomerId: req.customer.id, MovieId: id });
+
+      res.status(201).json(newFavorite);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = FavoriteController;
