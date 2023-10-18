@@ -39,4 +39,16 @@ async function setMovieStatus(req, res, next) {
   }
 }
 
-module.exports = { changeMovie, setMovieStatus };
+async function getFavorite(req, res, next) {
+  try {
+    const { role } = req.customer;
+    if (role !== "customer") {
+      throw { name: "forbidden" };
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { changeMovie, setMovieStatus, getFavorite };

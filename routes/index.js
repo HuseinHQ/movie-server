@@ -4,7 +4,7 @@ const MovieController = require("../controllers/MovieController");
 const GenreController = require("../controllers/GenreController");
 const UserControlller = require("../controllers/UserController");
 const HistoryController = require("../controllers/HistoryController");
-const authentication = require("../middlewares/authentication");
+const { authentication } = require("../middlewares/authentication");
 const { changeMovie, setMovieStatus } = require("../middlewares/authorization");
 const publicRoutes = require("./public");
 

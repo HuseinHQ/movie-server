@@ -1,5 +1,4 @@
 function errorHandler(err, req, res, next) {
-  console.log(err);
   let status = 500;
   let message = "Internal Server Error";
   switch (err.name) {
@@ -38,6 +37,7 @@ function errorHandler(err, req, res, next) {
       break;
   }
 
+  console.log(message);
   res.status(status).json({ message });
 }
 

@@ -23,9 +23,10 @@ async function authentication(req, res, next) {
   }
 }
 
-async function custAuthentication(req, res, next) {
+async function publicAuthentication(req, res, next) {
   try {
     const { access_token } = req.headers;
+    console.log(access_token);
     const payload = verifyToken(access_token);
 
     const customer = await Customer.findByPk(payload.id);
@@ -36,7 +37,7 @@ async function custAuthentication(req, res, next) {
     req.customer = {
       id: customer.id,
       email: customer.email,
-      role: customer.role,
+      role: "customer",
     };
 
     next();
@@ -45,4 +46,4 @@ async function custAuthentication(req, res, next) {
   }
 }
 
-module.exports = authentication;
+module.exports = { authentication, publicAuthentication };
