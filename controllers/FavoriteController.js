@@ -1,4 +1,4 @@
-const { Favorite, Movie } = require("../models/");
+const { Favorite, Movie, Genre } = require("../models/");
 
 class FavoriteController {
   static async getFavorites(req, res, next) {
@@ -6,7 +6,10 @@ class FavoriteController {
       const { id } = req.customer;
 
       const favorites = await Favorite.findAll({
-        include: Movie,
+        include: {
+          model: Movie,
+          include: Genre,
+        },
         where: { CustomerId: id },
       });
       console.log(favorites);

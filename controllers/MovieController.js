@@ -33,7 +33,9 @@ class MovieController {
   static async getMovieDetail(req, res, next) {
     try {
       const { id } = req.params;
-      const movie = await Movie.findByPk(id);
+      const movie = await Movie.findByPk(id, {
+        include: [Genre, User],
+      });
 
       if (movie) {
         res.status(200).json(movie);
@@ -131,7 +133,7 @@ class MovieController {
     try {
       const { page = 1, size = 8, filter } = req.query;
       const option = {
-        offset: page == 1 ? 0 : page * size,
+        offset: page == 1 ? 0 : (page - 1) * size,
         limit: size,
         where: { status: "Active" },
       };

@@ -10,10 +10,10 @@ router.post("/register", CustomerController.register);
 router.post("/login", CustomerController.login);
 router.post("/google-login", CustomerController.googleLogin);
 router.get("/movies", MovieController.getMovieWithPaginationAndFilter);
+router.get("/movies/:id", MovieController.getMovieDetail);
 
 router.use(publicAuthentication);
 router.post("/customers", CustomerController.generateQrCode);
-router.get("/movies/:id", MovieController.getMovieDetail);
 router.get("/favorites", getFavorite, FavoriteController.getFavorites);
 router.post("/favorites", FavoriteController.postFavorite);
 
