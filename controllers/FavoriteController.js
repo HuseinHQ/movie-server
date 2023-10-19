@@ -18,8 +18,7 @@ class FavoriteController {
 
   static async postFavorite(req, res, next) {
     try {
-      console.log("masuk");
-      const { id } = req.params;
+      const { id } = req.body;
 
       const findMovie = await Movie.findByPk(id);
       if (!findMovie) {

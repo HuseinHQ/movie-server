@@ -129,9 +129,9 @@ describe("GET /pub/favorites", () => {
   });
 });
 
-describe("GET /pub/movies/:id", () => {
+describe("POST /favorites", () => {
   it("should return the new favorite created", async () => {
-    const response = await request(app).post("/pub/movies/1").set({ access_token });
+    const response = await request(app).post("/pub/favorites").set({ access_token }).send({ id: 1 });
 
     expect(response.status).toBe(201);
     expect(response.body).toBeInstanceOf(Object);
@@ -143,7 +143,7 @@ describe("GET /pub/movies/:id", () => {
   });
 
   it("should fail add to favorite when the movie id is not exists in database", async () => {
-    const response = await request(app).post("/pub/movies/99").set({ access_token });
+    const response = await request(app).post("/pub/favorites").set({ access_token }).send({ id: 100 });
 
     expect(response.status).toBe(404);
     expect(response.body).toBeInstanceOf(Object);
