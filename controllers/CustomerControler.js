@@ -59,8 +59,7 @@ class CustomerController {
         audience: process.env.GOOGLE_CLIENT_ID,
       });
       const payload = ticket.getPayload();
-
-      const [customer, created] = await User.findOrCreate({
+      const [customer, created] = await Customer.findOrCreate({
         where: { email: payload.email },
         defaults: {
           username: payload.name,
@@ -85,9 +84,16 @@ class CustomerController {
   static async generateQrCode(req, res, next) {
     try {
       const { QR_CODE_API_KEY } = process.env;
+      const { url } = req.body;
       const generatedQrCode = await axios({
         method: "post",
         url: "https://api.qr-code-generator.com/v1/create?access-token=" + QR_CODE_API_KEY,
+        data: {
+          frame_name: "no-frame",
+          qr_code_text: url,
+          image_format: "SVG",
+          qr_code_logo: "scan-me-square",
+        },
       });
 
       res.status(201).json({ qrcode: generatedQrCode.data });

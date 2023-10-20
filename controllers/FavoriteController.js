@@ -12,7 +12,7 @@ class FavoriteController {
         },
         where: { CustomerId: id },
       });
-      console.log(favorites);
+
       res.status(200).json(favorites);
     } catch (error) {
       next(error);
@@ -28,9 +28,19 @@ class FavoriteController {
         throw { name: "not found" };
       }
 
-      const newFavorite = await Favorite.create({ CustomerId: req.customer.id, MovieId: id });
+      const [newFavorite, isCreated] = await Favorite.findOrCreate({
+        where: { CustomerId: req.customer.id, MovieId: id },
+        defaults: {
+          CustomerId: req.customer.id,
+          MovieId: id,
+        },
+      });
 
-      res.status(201).json(newFavorite);
+      if (isCreated) {
+        res.status(201).json({ newFavorite, isCreated });
+      } else {
+        res.status(200).json({ newFavorite, isCreated });
+      }
     } catch (error) {
       next(error);
     }
