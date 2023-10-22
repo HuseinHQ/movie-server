@@ -816,4 +816,6 @@ _500 - Internal Server Error_
 
 **deployed links**: 
 - server: _https://movie-server.huseinhk.me_
-- client: _https://movie-app-client-31577.web.app/_
+- client-v1: _https://movie-app-client-31577.web.app_
+- client-v2: _https://movie-client-v2.web.app_
+- client-v3: _https://movie-client-v3.web.app_
