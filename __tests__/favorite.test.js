@@ -130,16 +130,30 @@ describe("GET /pub/favorites", () => {
 });
 
 describe("POST /favorites", () => {
-  it("should return the new favorite created", async () => {
+  it("should return the favorite detail, if the movies is already in customer's list", async () => {
     const response = await request(app).post("/pub/favorites").set({ access_token }).send({ id: 1 });
+
+    expect(response.status).toBe(200);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.body.newFavorite).toHaveProperty("id", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("CustomerId", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("MovieId", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("createdAt", expect.any(String));
+    expect(response.body.newFavorite).toHaveProperty("updatedAt", expect.any(String));
+    expect(response.body).toHaveProperty("isCreated", false);
+  });
+
+  it("should return the new favorite detail, if the favorited movie is new", async () => {
+    const response = await request(app).post("/pub/favorites").set({ access_token }).send({ id: 3 });
 
     expect(response.status).toBe(201);
     expect(response.body).toBeInstanceOf(Object);
-    expect(response.body).toHaveProperty("id", expect.any(Number));
-    expect(response.body).toHaveProperty("CustomerId", expect.any(Number));
-    expect(response.body).toHaveProperty("MovieId", expect.any(Number));
-    expect(response.body).toHaveProperty("createdAt", expect.any(String));
-    expect(response.body).toHaveProperty("updatedAt", expect.any(String));
+    expect(response.body.newFavorite).toHaveProperty("id", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("CustomerId", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("MovieId", expect.any(Number));
+    expect(response.body.newFavorite).toHaveProperty("createdAt", expect.any(String));
+    expect(response.body.newFavorite).toHaveProperty("updatedAt", expect.any(String));
+    expect(response.body).toHaveProperty("isCreated", true);
   });
 
   it("should fail add to favorite when the movie id is not exists in database", async () => {
