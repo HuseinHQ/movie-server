@@ -97,5 +97,86 @@
         "rating": 9,
         "genreId": 5,
         "authorId": 10
+    },
+    {
+        "title": "Forrest Gump",
+        "synopsis": "Forrest Gump is a 1994 comedy-drama film directed by Robert Zemeckis. It follows the life of Forrest Gump, a man with low intelligence, who unintentionally influences several historical events in the 20th century United States.",
+        "trailerUrl": "https://www.youtube.com/watch?v=bLvqoHBptjg",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
+        "rating": 8,
+        "genreId": 6,
+        "authorId": 5
+    },
+    {
+        "title": "Pulp Fiction",
+        "synopsis": "Pulp Fiction is a 1994 neo-noir crime film directed by Quentin Tarantino. The film weaves multiple interconnected stories involving crime, redemption, and the bizarre occurrences in the lives of two hitmen.",
+        "trailerUrl": "https://www.youtube.com/watch?v=s7EdQ4FqbhY",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
+        "rating": 8,
+        "genreId": 1,
+        "authorId": 4
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "synopsis": "The Shawshank Redemption is a 1994 drama film directed by Frank Darabont. It tells the story of a banker who is sentenced to life in Shawshank State Penitentiary for a crime he didn't commit and his friendship with a fellow inmate.",
+        "trailerUrl": "https://www.youtube.com/watch?v=6hB3S9bIaco",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
+        "rating": 9,
+        "genreId": 3,
+        "authorId": 2
+    },
+    {
+        "title": "The Dark Knight",
+        "synopsis": "The Dark Knight is a 2008 superhero film directed by Christopher Nolan. It is the second installment of Nolan's Batman trilogy and features the iconic character Batman and his battle against the Joker.",
+        "trailerUrl": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/8/8a/Dark_Knight.jpg",
+        "rating": 9,
+        "genreId": 1,
+        "authorId": 3
+    },
+    {
+        "title": "Gladiator",
+        "synopsis": "Gladiator is a 2000 historical drama film directed by Ridley Scott. The story follows a former Roman general seeking vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+        "trailerUrl": "https://www.youtube.com/watch?v=AxQajgTyLcM",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/8/8d/Gladiator_ver1.jpg",
+        "rating": 8,
+        "genreId": 2,
+        "authorId": 5
+    },
+    {
+        "title": "The Godfather",
+        "synopsis": "The Godfather is a 1972 crime film directed by Francis Ford Coppola. It is based on the novel by Mario Puzo and follows the powerful Italian-American Mafia family of Don Vito Corleone.",
+        "trailerUrl": "https://www.youtube.com/watch?v=sY1S34973zA",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+        "rating": 9,
+        "genreId": 3,
+        "authorId": 10
+    },
+    {
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "synopsis": "The Fellowship of the Ring is a 2001 epic fantasy film directed by Peter Jackson. It's the first part of the Lord of the Rings trilogy and follows the journey of a young hobbit, Frodo Baggins, who must destroy a powerful ring to save Middle-earth.",
+        "trailerUrl": "https://www.youtube.com/watch?v=V75dMMIW2B4",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/8/87/Ringstrilogyposter.jpg",
+        "rating": 8,
+        "genreId": 9,
+        "authorId": 8
+    },
+    {
+        "title": "Schindler's List",
+        "synopsis": "Schindler's List is a 1993 historical drama film directed by Steven Spielberg. The film tells the story of Oskar Schindler, a German businessman who saved the lives of more than a thousand Polish-Jewish refugees during the Holocaust.",
+        "trailerUrl": "https://www.youtube.com/watch?v=gG22XNhtnoY",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/en/3/38/Schindler%27s_List_movie.jpg",
+        "rating": 9,
+        "genreId": 3,
+        "authorId": 10
+    },
+    {
+        "title": "Titanic",
+        "synopsis": "Titanic is a 1997 epic romance and disaster film directed by James Cameron. The film revolves around the ill-fated maiden voyage of the RMS Titanic and the love story between Jack and Rose.",
+        "trailerUrl": "https://www.youtube.com/watch?v=zCy5WQ9S4c0",
+        "imgUrl": "https://upload.wikimedia.org/wikipedia/id/1/19/Titanic_%28Official_Film_Poster%29.png",
+        "rating": 8,
+        "genreId": 5,
+        "authorId": 2
     }
 ]

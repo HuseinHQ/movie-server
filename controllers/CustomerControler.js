@@ -10,6 +10,7 @@ class CustomerController {
       const { username, email, password, phoneNumber, address } = req.body;
 
       const newCustomer = await Customer.create({ username, email, password, phoneNumber, address });
+
       res.status(201).json({
         id: newCustomer.id,
         email: newCustomer.email,
@@ -98,7 +99,6 @@ class CustomerController {
 
       res.status(201).json({ qrcode: generatedQrCode.data });
     } catch (error) {
-      console.log(error);
       next(error);
     }
   }

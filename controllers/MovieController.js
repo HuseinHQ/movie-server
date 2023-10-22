@@ -102,7 +102,7 @@ class MovieController {
 
       // CEK APAKAH STATUS YANG DIBERIKAN VALID
       const isStatusValid = ["Active", "Inactive", "Archived"].includes(status) ? true : false;
-      console.log(isStatusValid);
+
       if (!isStatusValid) {
         throw { name: "invalid_status" };
       }

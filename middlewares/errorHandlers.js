@@ -9,7 +9,7 @@ function errorHandler(err, req, res, next) {
       break;
     case "SequelizeUniqueConstraintError":
       status = 400;
-      message = "Email already exists";
+      message = err.errors[0].message;
       break;
     case "Invalid credentials":
       status = 401;
@@ -37,7 +37,6 @@ function errorHandler(err, req, res, next) {
       break;
   }
 
-  console.log(message);
   res.status(status).json({ message });
 }
 

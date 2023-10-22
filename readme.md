@@ -4,6 +4,7 @@ List of Available Endpoints:
 - `POST /movies`
 - `GET /movies`
 - `GET /movies/:id`
+- `DELETE /movies/:id`
 - `GET /genres`
 - `POST /register`
 - `POST /login`
@@ -11,9 +12,18 @@ List of Available Endpoints:
 - `PUT /movies/:id`
 - `PATCH /movies/:id`
 - `GET /users`
+- `POST /pub/register`
+- `POST /pub/login`
+- `POST /pub/google-login`
+- `GET /pub/movies`
+- `GET /pub/movies/:id`
+- `GET /pub/genres`
+- `POST /pub/qr-code`
+- `GET /pub/favorites`
+- `POST /pub/favorites`
 
-### POST /movies
-#### Description
+## POST /movies
+### Description
 - Create a new movie
 
 #### Request
@@ -70,8 +80,8 @@ _400 - Bad Request_
     }
     ```
 
-### GET /movies
-#### Description
+## GET /movies
+### Description
 - Get all movies from database
 
 #### Request
@@ -106,8 +116,8 @@ _200 - OK_
     }
     ```
 
-### GET /movies/:id
-#### Description
+## GET /movies/:id
+### Description
 - Get movie detail from database
 
 #### Request
@@ -231,9 +241,9 @@ _200 - OK_
     {
       "username": String,
       "email": String, // (unique constraint)
-      "password": String, 
+      "password": String, // (validation: required)
       "phoneNumber": String,
-      "Address": String
+      "address": String
     }
     ```
 ### Response
@@ -254,7 +264,7 @@ _400 - Bad Request_
     {
       "statusCode": 400,
       "data": {
-        "message": "Email already exists"
+        "message": "Email already taken"
       },
     }
     ```
@@ -267,8 +277,8 @@ _400 - Bad Request_
 - Body
     ```json
     {
-      "email": String,
-      "password": String, 
+      "email": String, // (validation: required)
+      "password": String, // (validation: required)
     }
     ```
 ### Response
@@ -467,8 +477,324 @@ _200 - OK_
     }
     ```
 
+## POST /pub/register
+### Description
+- Register into public interface of movie apps
 
-### Global Error
+#### Request
+- Body
+    ```json
+    {
+      "username": String,
+      "email": String, // (unique constraint)
+      "password": String, // (validation: required)
+      "phoneNumber": String,
+      "address": String
+    }
+    ```
+### Response
+_201 - Created_
+- Body
+    ```json
+    {
+      "statusCode": 201,
+      "data": {
+        "id": Integer,
+        "email": String,
+      },
+    }
+    ```
+_400 - Bad Request_
+- Body
+    ```json
+    {
+      "statusCode": 400,
+      "data": {
+        "message": "Email already taken"
+      }
+      OR
+      {
+        "message": "Email is required"
+      }
+      OR
+      {
+        "message": "Password is required"
+      }
+      OR
+      {
+        "message": "Minimal length of password is 5"
+      },
+    }
+    ```
+
+## POST /pub/login
+### Description
+- Login into apps via public interface
+
+#### Request
+- Body
+    ```json
+    {
+      "email": String, // (validation: required)
+      "password": String, // (validation: required)
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "access_token": String
+      },
+    }
+    ```
+_401 - Unauthorized_
+- Body
+    ```json
+    {
+      "statusCode": 401,
+      "data": {
+        "error": "invalid username or email or password"
+      },
+    }
+    ```
+
+## POST /pub/google-login
+### Description
+- Login or register with google in public interface
+
+#### Request
+- Headers
+    ```json
+    {
+      "google_token": String,
+    }
+    ```
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "access_token": String
+      },
+    }
+    ```
+
+_201 - Created_
+- Body
+    ```json
+    {
+      "statusCode": 201,
+      "data": {
+        "access_token": String
+      },
+    }
+    ```
+
+## GET /pub/movies
+### Description
+- Get all active movies from database with filter and pagination without authentication
+
+#### Response
+_200 - OK_
+
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": [
+        {
+          "id": Integer,
+          "title": String,
+          "synopsis": String,
+          "trailerUrl": String,
+          "imgUrl": String,
+          "rating": Integer,
+          "genreId": Integer,
+          "authorId": Integer,
+          "createdAt": Date,
+          "updatedAt": Date
+        },
+        ...
+      ]
+    }
+    ```
+
+## GET /pub/movies/:id
+### Description
+- Get movie detail from database without authentication
+
+#### Response
+_200 - OK_
+
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+          "id": Integer,
+          "title": String,
+          "synopsis": String,
+          "trailerUrl": String,
+          "imgUrl": String,
+          "rating": Integer,
+          "genreId": Integer,
+          "authorId": Integer,
+          "createdAt": Date,
+          "updatedAt": Date
+        },
+    }
+    ```
+_404 - Not Found_
+- Body
+    ```json
+    {
+      "statusCode": 404,
+      "error": {
+        "message": "error not found"
+      }
+    }
+    ```
+
+## GET /pub/genres
+### Description
+- Get all genres from database without authentication
+
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": [
+        {
+            "id": Integer,
+            "name": String,
+            "createdAt": Date,
+            "updatedAt": Date
+        },
+        ...
+      ]
+    }
+    ```
+
+## POST /pub/qr-code
+### Description
+- Generate a QR Code svg for detail movie page
+
+### Request
+- Body
+  ```json
+  {
+    "url": String
+  }
+  ```
+
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "newFavorite": {
+        "id": Integer,
+        "CustomerId": Integer,
+        "MovieId": Integer,
+        "createdAt": Date,
+        "updatedAt": Date
+      },
+      "isCreated": false
+    }
+    ```
+
+_201 - Created_
+- Body
+    ```json
+    {
+      "newFavorite": {
+        "id": Integer,
+        "CustomerId": Integer,
+        "MovieId": Integer,
+        "createdAt": Date,
+        "updatedAt": Date
+      },
+      "isCreated": true
+    }
+    ```
+
+_404 - Not Found_
+- Body
+    ```json
+    {
+      "message": "error not found"
+    }
+    ```
+
+## GET /pub/favorites
+### Description
+- Get all favorite movies by customer id
+
+### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+
+### Response
+_200 - OK_
+- Body
+    ```json
+    {
+      "statusCode": 200,
+      "data": [
+        {
+        "id": Integer,
+        "CustomerId": Integer,
+        "MovieId": Integer,
+        "createdAt": String,
+        "updatedAt": String,
+        "Movie": {
+            "id": Integer,
+            "title": String,
+            "synopsis": String,
+            "trailerUrl": String,
+            "imgUrl": String,
+            "rating": Integer,
+            "genreId": Integer,
+            "authorId": Integer,
+            "status": String,
+            "createdAt": String,
+            "updatedAt": String,
+            "Genre": {
+                "id": Number,
+                "name": String,
+                "createdAt": String,
+                "updatedAt": String
+            }
+        }
+    }
+      ],
+    }
+    ```
+
+## POST /pub/favorites
+### Description
+- Create a new favorite movies
+
+### Request
+- Headers
+    ```json
+    {
+      "access_token": String
+    }
+    ```
+
+## Global Error
 #### Response
 _401 - Unauthorized_
 - Body
@@ -487,7 +813,6 @@ _500 - Internal Server Error_
       }
     }
     ```
-
 
 **deployed links**: 
 - server: _https://movie-server.huseinhk.me_

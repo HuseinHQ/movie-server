@@ -26,7 +26,7 @@ async function authentication(req, res, next) {
 async function publicAuthentication(req, res, next) {
   try {
     const { access_token } = req.headers;
-    console.log(access_token);
+
     const payload = verifyToken(access_token);
 
     const customer = await Customer.findByPk(payload.id);

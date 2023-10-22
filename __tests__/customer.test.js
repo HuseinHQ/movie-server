@@ -110,7 +110,7 @@ describe("POST /pub/register", () => {
 
     expect(response.status).toBe(400);
     expect(response.body).toBeInstanceOf(Object);
-    expect(response.body).toHaveProperty("message", "Email already exists");
+    expect(response.body).toHaveProperty("message", "Email already taken");
   });
 
   it("should fail when email input is not type of email", async () => {
